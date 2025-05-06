@@ -1,5 +1,5 @@
 class User {
-  private id: string | number | null | undefined;
+  private id: string | null | undefined;
   private name: string | null | undefined;
   private password: string;
   private email: string;
@@ -10,7 +10,7 @@ class User {
     email: string,
     password: string,
     name?: string,
-    id?: string | number | null,
+    id?: string | null,
     create_at?: Date | null | undefined,
     updated_at?: Date | null | undefined
   ) {
@@ -51,7 +51,7 @@ class User {
     }
   }
 
-  public getId(): string | number | null | undefined {
+  public getId(): string | null | undefined {
     try {
       return this.id;
     } catch (error) {
