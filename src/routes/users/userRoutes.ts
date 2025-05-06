@@ -14,7 +14,7 @@ usrRoute.post("/create", (req: Request, res: Response) => {
 
 usrRoute.post("/login", (req: Request, res: Response) => {
     try {
-        res.send({ message: "okay, you're here." });
+      userService.ValidateLogin(req, res);
       } catch (error) {
         res.status(500).json({ message: ("Error" + error) });
       } 
