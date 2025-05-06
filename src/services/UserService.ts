@@ -28,7 +28,7 @@ class UserService {
       if (!foundUser) {
         res.status(401).json({ Message: "User not found." });
       }
-      if (!foundUser?.getId() && foundUser?.getEmail()) {
+      if (foundUser?.getId() && foundUser?.getEmail()) {
         const token = await this.jwt.generateToken({
           id: foundUser.getId(),
           email: foundUser.getEmail(),
