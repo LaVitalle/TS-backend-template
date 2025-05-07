@@ -28,15 +28,21 @@ class UserService {
       if (!foundUser) {
         res.status(401).json({ Message: "User not found." });
       }
-      if (!foundUser?.getId() && foundUser?.getEmail()) {
+      if (foundUser?.getId() && foundUser?.getEmail()) {
         const token = await this.jwt.generateToken({
           id: foundUser.getId(),
           email: foundUser.getEmail(),
         });
-        return res.status(200).json({
-          message: "Login successful",
-          token,
-        });
+
+          res.cookie('token', token, {
+            httpOnly: true,
+            secure: true,
+            maxAge: 7200000
+          });
+          return res.status(200).json({
+            message: "Login successful"
+          });
+      
       }
       res.status(400).json({ Message: "Invalid user data." });
     } catch (error) {
